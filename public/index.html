@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Github Repositories</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Github Repositories</h1>
+        </header>
+        <section class="search-section">
+            <label for="username">Enter Github Username:</label>
+            <input type="text" id="username" placeholder="e.g., johnpapa">
+            <button onclick="getRepositories()">Get Repositories</button>
+            <label for="reposPerPage">Repositories Per Page:</label>
+            <select id="reposPerPage">
+                <option value="10">10</option>
+                <option value="30">30</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+        </section>
+        
+        <!-- Loader -->
+        <div id="loader" class="loader"></div>
+        
+        <!-- User Profile Information -->
+        <section class="profile-section" id="profileSection">
+            <!-- User profile information will be displayed here -->
+        </section>
+
+        <!-- Repositories List -->
+        <section class="repo-section">
+            <ul id="repoList" class="repo-list"></ul>
+        </section>
+        
+        <!-- Pagination -->
+        <section class="pagination-section">
+            <button onclick="previousPage()">Previous</button>
+            <span id="currentPage">Page 1</span>
+            <button onclick="nextPage()">Next</button>
+        </section>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
