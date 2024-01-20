@@ -1,7 +1,7 @@
 // scripts.js
 
 const API_BASE_URL = 'https://api.github.com';
-const GITHUB_ACCESS_TOKEN = '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'; // Replace with your actual token
+const GITHUB_ACCESS_TOKEN = process.env.GITHUB_ACCESS_TOKEN; // Replace with your actual token
 
 let currentPage = 1;
 let username = '';
