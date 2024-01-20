@@ -39,13 +39,21 @@ async function getUserData(username) {
 }
 
 async function getRepositories(username) {
-    const response = await axios.get(`https://api.github.com/users/${username}/repos`, {
-        headers: {
-            'Accept': 'application/vnd.github.v3+json'
-        }
-    });
+    try {
+        // Instead of directly exposing the token to the client,
+        // make a server-to-server request to GitHub API
+        const response = await axios.get(`https://api.github.com/users/${username}/repos`, {
+            headers: {
+                'Accept': 'application/vnd.github.v3+json',
+                'Authorization': `Bearer ${process.env.GITHUB_ACCESS_TOKEN}`
+            }
+        });
 
-    return response.data;
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching repositories:', error.response?.status, error.response?.data);
+        throw new Error('Error fetching repositories');
+    }
 }
 
 app.listen(port, () => {

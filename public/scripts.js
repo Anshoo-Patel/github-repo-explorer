@@ -1,7 +1,6 @@
 // scripts.js
 
 const API_BASE_URL = 'https://api.github.com';
-const GITHUB_ACCESS_TOKEN = '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'; // Replace with your actual token
 
 let currentPage = 1;
 let username = '';
@@ -18,15 +17,11 @@ function getRepositories() {
 
     // Make API request to get user details
     $.ajax({
-        url: `${API_BASE_URL}/users/${username}`,
+        url: `/api/repositories/${username}`, // This endpoint is handled by your server
         method: 'GET',
-        headers: {
-            'Accept': 'application/vnd.github.v3+json',
-            'Authorization': `Bearer ${GITHUB_ACCESS_TOKEN}`
-        },
-        success: function (userData) {
+        success: function (data) {
             hideLoader();
-            displayUserProfile(userData);
+            displayUserProfile(data.userData);
 
             // Move getRepositoriesForUser inside the success callback
             getRepositoriesForUser();
@@ -43,20 +38,14 @@ function getRepositories() {
 
 
 
-
-
-
 function getRepositoriesForUser() {
     // Make API request to get repositories
     $.ajax({
-        url: `${API_BASE_URL}/users/${username}/repos?per_page=${reposPerPage}&page=${currentPage}`,
+        url: `/api/repositories/${username}`, // Update the URL to use the server endpoint
         method: 'GET',
-        headers: {
-            'Accept': 'application/vnd.github.v3+json'
-        },
         success: function (data) {
             hideLoader();
-            displayRepositories(data);
+            displayRepositories(data.reposData); // Update to access the correct property
         },
         error: function (error) {
             hideLoader();
