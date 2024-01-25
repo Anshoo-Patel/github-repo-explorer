@@ -34,7 +34,6 @@ function getRepositories() {
     });
 }
 
-// Rest of the code remains unchanged...
 
 
 
@@ -162,4 +161,3 @@ $('#reposPerPage').change(function () {
     getRepositoriesForUser();
 });
 
-// ... (rest of the script remains the same)
